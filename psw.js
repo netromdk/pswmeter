@@ -9,6 +9,17 @@
    It uses two metrics to calculate a score: Basic16 and Comprehensive8
    The one producing the largest score is the result.
 
+   Basic16 yields 4 points for each of the first 7 characters after
+   which 8 points are awarded subsequent characters. A score of 100 is
+   awarded 16 characters, which is why it's called Basic16.
+
+   Comprehensive8 yields 4 points for each character and an additional
+   17 points for each uppercase character, digit or symbol. Inputting
+   a second unique uppercase character, digit or symbol yields an
+   additional 8 points, and a third adds extra 4 points. If no
+   lowercse characters are found then 17 points are deducted, and if
+   the text does not appear in the word list then 17 points are added.
+
    The word lists used were provided by Open Wall:
      http://download.openwall.net/pub/wordlists/passwords/
 
@@ -62,11 +73,6 @@ Psw.prototype["scoreMeaning"] = Psw.prototype.scoreMeaning;
 
 /**************************************/
 
-/**
- * Basic16 yields 4 points for each of the first 7 characters after
- * which 8 points are awarded subsequent characters. A score of 100 is
- * awarded 16 characters, which is why it's called Basic16.
- */
 Psw.prototype.calcBasic16 = function(text) {
   if (text == undefined || text.length == 0) {
     return 0;
@@ -80,14 +86,6 @@ Psw.prototype.calcBasic16 = function(text) {
 };
 Psw.prototype["calcBasic16"] = Psw.prototype.calcBasic16;
 
-/**
- * Comprehensive8 yields 4 points for each character and an additional
- * 17 points for each uppercase character, digit and symbol. 17 points
- * are deducted if it contains no lowercase characters. Inputting a
- * second unique uppercase character, digit or symbol yields an
- * additional 8 points, and a third adds extra 4 points. If the text
- * does not appear in the word list then 17 points are added.
- */
 Psw.prototype.calcComp8 = function(text) {
   if (text == undefined || text.length == 0) {
     return 0;
