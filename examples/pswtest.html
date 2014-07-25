@@ -1,0 +1,38 @@
+<link href="lib/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<h4>Testing password strength and guessability</h4>
+
+<input type="password" id="psw" placeholder="Password" oninput="recalc();"/>
+<div id="msg"></div>
+<div id="meter"></div>
+
+<script src="lib/js/jquery.min.js"></script>
+<script src="lib/js/bootstrap.min.js"></script>
+<script src="lib/js/xregexp.min.js"></script>
+<script src="psw.js"></script>
+
+<script>
+  function recalc() {
+    var text = $("#psw").val();
+    var msg = $("#msg");
+    var meter = $("#meter");
+    var psw = new Psw;
+    var score = psw.calcScore(text);
+    if (score == 0) {
+      msg.html("");
+      meter.html("");
+      return;
+    }
+    var meaning = psw.scoreMeaning(score);
+    var max = 140;
+    msg.html("<b>" + meaning[0] + "</b> (" + score + ")");
+    meter.html("<div class='progress' style='width:300px;'>" +
+               "<div class='progress-bar' role='progressbar' " +
+                 "aria-valuenow='" + score + "' aria-valuemin='0' " +
+                 "aria-valuemax='100' style='width:" + score/max*100 +
+                   "%;background-color:" + meaning[1] + ";'>" +
+               "</div></div>");
+  }
+
+  $("#psw").focus();
+</script>
