@@ -129,7 +129,7 @@ Psw.prototype.isUpper = function(text) {
 Psw.prototype["isUpper"] = Psw.prototype.isUpper;
 
 Psw.prototype.isLower = function(text) {
-  return XRegExp("^\\p{L}$").test(text);
+  return XRegExp("^\\p{Ll}$").test(text);
 };
 Psw.prototype["isLower"] = Psw.prototype.isLower;
 
