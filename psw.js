@@ -9,6 +9,9 @@
    It uses two metrics to calculate a score: Basic16 and Comprehensive8
    The one producing the largest score is the result.
 
+   The word lists used were provided by Open Wall:
+     http://download.openwall.net/pub/wordlists/passwords/
+
    Deps: jQuery, XRegExp
  ******************************************************************************/
 
