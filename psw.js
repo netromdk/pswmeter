@@ -110,7 +110,7 @@ Psw.prototype.calcComp8 = function(text) {
 
   if (los == 0) score -= 17;
 
-  if (this.wordlist.indexOf(text) == -1) {
+  if (this.checkWordList(text)) {
     score += 17;
   }
 
@@ -160,3 +160,13 @@ Psw.prototype.countCmp = function(text, cmp, unique) {
   return cnt;
 };
 Psw.prototype["countCmp"] = Psw.prototype.countCmp;
+
+/**
+ * Returns false if found in the word list.
+ */
+Psw.prototype.checkWordList = function(text) {
+  return !(this.wordlist.indexOf(text) != -1 ||
+           this.wordlist.indexOf(text.toUpperCase()) != -1 ||
+           this.wordlist.indexOf(text.toLowerCase()) != -1);
+};
+Psw.prototype["checkWordList"] = Psw.prototype.checkWordList;
