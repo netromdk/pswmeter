@@ -6,6 +6,10 @@
    yield a score of 0, which is the worst, and the higher the score
    the stronger the password.
 
+   Meaning can be attached by using scoreMeaning(score) that will
+   output a textual meaning, like "dreadful" or "excellent", and a
+   color.
+
    It uses two metrics to calculate a score: Basic16 and Comprehensive8
    The one producing the largest score is the result.
 
