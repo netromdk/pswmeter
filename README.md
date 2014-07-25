@@ -1,4 +1,4 @@
 pswmeter
 ========
 
-Password strength/unguessability evaluation and an meter for conveying the information.
+Password strength/unguessability evaluation and a meter for conveying the information.
