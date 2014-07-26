@@ -41,9 +41,9 @@
 <script>
   function recalc() {
     var pswField = $("#psw");
-    var text = $("#psw").val();
     var msg = $("#msg");
     var meter = $("#meter");
+    var text = pswField.val();
     var psw = new Psw;
     var score = psw.calcScore(text);
     if (score == 0) {
@@ -53,7 +53,7 @@
     }
     var meaning = psw.scoreMeaning(score);
     var max = 140;
-    msg.html("<b>" + meaning[0] + "</b> (" + score + ")");
+    msg.html("<b>" + meaning[0] + "</b>");
     pswField.css({"background-color" : meaning[1]});
   }
 
