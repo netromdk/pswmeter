@@ -36,6 +36,9 @@ function Psw() {
 window["Psw"] = Psw;
 
 Psw.prototype.calcScore = function(text) {
+  if (text == undefined || text.length == 0) {
+    return 0;
+  }
   return Math.max(this.calcBasic16(text), this.calcComp8(text));
 };
 Psw.prototype["calcScore"] = Psw.prototype.calcScore;
@@ -78,9 +81,6 @@ Psw.prototype["scoreMeaning"] = Psw.prototype.scoreMeaning;
 /**************************************/
 
 Psw.prototype.calcBasic16 = function(text) {
-  if (text == undefined || text.length == 0) {
-    return 0;
-  }
   var score = 0, len = text.length;
   score = Math.min(len, 7) * 4;
   if (len > 7) {
@@ -91,10 +91,6 @@ Psw.prototype.calcBasic16 = function(text) {
 Psw.prototype["calcBasic16"] = Psw.prototype.calcBasic16;
 
 Psw.prototype.calcComp8 = function(text) {
-  if (text == undefined || text.length == 0) {
-    return 0;
-  }
-
   var score = 0, len = text.length;
   var upsq = this.countCmp(text, this.isUpper, true);
   var digsq = this.countCmp(text, this.isDigit, true);
