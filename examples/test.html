@@ -7,6 +7,22 @@
   <link href="../lib/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <style>
     body { margin: 5px; }
+    
+    ::-webkit-input-placeholder {
+      color: #000000;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+      color: #000000;  
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+      color: #000000;  
+    }
+
+    :-ms-input-placeholder {  
+      color: #000000;  
+    }
   </style>
 </head>
 <body>
@@ -24,6 +40,7 @@
 
 <script>
   function recalc() {
+    var pswField = $("#psw");
     var text = $("#psw").val();
     var msg = $("#msg");
     var meter = $("#meter");
@@ -37,12 +54,7 @@
     var meaning = psw.scoreMeaning(score);
     var max = 140;
     msg.html("<b>" + meaning[0] + "</b> (" + score + ")");
-    meter.html("<div class='progress' style='width:300px;'>" +
-               "<div class='progress-bar' role='progressbar' " +
-                 "aria-valuenow='" + score + "' aria-valuemin='0' " +
-                 "aria-valuemax='100' style='width:" + score/max*100 +
-                   "%;background-color:" + meaning[1] + ";'>" +
-               "</div></div>");
+    pswField.css({"background-color" : meaning[1]});
   }
 
   $("#psw").focus();
