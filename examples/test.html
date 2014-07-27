@@ -8,22 +8,6 @@
   <link href="../lib/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <style>
     body { margin: 5px; }
-    
-    ::-webkit-input-placeholder {
-      color: #000000;
-    }
-
-    :-moz-placeholder { /* Firefox 18- */
-      color: #000000;  
-    }
-
-    ::-moz-placeholder {  /* Firefox 19+ */
-      color: #000000;  
-    }
-
-    :-ms-input-placeholder {  
-      color: #000000;  
-    }
   </style>
 </head>
 <body>
@@ -32,7 +16,6 @@
 
 <input type="password" id="psw" placeholder="Password" oninput="recalc();"/>
 <div id="msg"></div>
-<div id="meter"></div>
 
 <script src="../lib/js/jquery.min.js"></script>
 <script src="../lib/js/bootstrap.min.js"></script>
@@ -42,20 +25,16 @@
 <script>
   function recalc() {
     var pswField = $("#psw");
-    var msg = $("#msg");
-    var meter = $("#meter");
-    var text = pswField.val();
+    var msgField = $("#msg");
     var psw = new Psw;
-    var score = psw.calcScore(text);
+    var score = psw.calcScore(pswField.val());
     if (score == 0) {
-      msg.html("");
-      meter.html("");
+      msgField.html("");
       pswField.css({"background-color" : "#FFFFFF"});
       return;
     }
     var meaning = psw.scoreMeaning(score);
-    var max = 140;
-    msg.html("<b>" + meaning[0] + "</b>");
+    msgField.html("<b>" + meaning[0] + "</b>");
     pswField.css({"background-color" : meaning[1]});
   }
 
