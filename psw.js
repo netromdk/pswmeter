@@ -43,6 +43,8 @@ Psw.prototype.analyze = function(text) {
 };
 Psw.prototype["analyze"] = Psw.prototype.analyze;
 
+/**************************************/
+
 Psw.prototype.calcScore = function(text) {
   if (text == undefined || text.length == 0) {
     return 0;
@@ -85,8 +87,6 @@ Psw.prototype.scoreMeaning = function(score) {
   }
 };
 Psw.prototype["scoreMeaning"] = Psw.prototype.scoreMeaning;
-
-/**************************************/
 
 Psw.prototype.calcBasic16 = function(text) {
   var score = 0, len = text.length;
