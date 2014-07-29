@@ -28,10 +28,10 @@
     var pswField = $("#psw");
     var msgField = $("#msg");
     var psw = new Psw;
-    var score = psw.calcScore(pswField.val());
-    var meaning = psw.scoreMeaning(score);
-    msgField.html("<b>" + meaning[0] + "</b>");
-    pswField.css({"background-color" : meaning[1]});
+    var pswParsed = psw.analyze(pswField.val());
+
+    msgField.html("<b>" + pswParsed["meaning"] + "</b>");
+    pswField.css({"background-color" : pswParsed["color"]});
   }
 
   $("#psw").focus();

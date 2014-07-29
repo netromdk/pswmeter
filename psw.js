@@ -35,6 +35,16 @@ function Psw() {
 }
 window["Psw"] = Psw;
 
+Psw.prototype.analyze = function(text) {
+   var score = this.calcScore(text);
+   return {
+      "score" : this.calcScore(text),
+      "meaning" : this.scoreMeaning(score)[0],
+      "color" : this.scoreMeaning(score)[1]
+   };
+};
+Psw.prototype["analyze"] = Psw.prototype.analyze;
+
 Psw.prototype.calcScore = function(text) {
   if (text == undefined || text.length == 0) {
     return 0;
@@ -165,4 +175,4 @@ Psw.prototype.checkWordList = function(text) {
            this.wordlist.indexOf(text.toUpperCase()) != -1 ||
            this.wordlist.indexOf(text.toLowerCase()) != -1);
 };
-Psw.prototype["checkWordList"] = Psw.prototype.checkWordList;
+Psw.prototype["checkWordList"] = Psw.prototype.checkWordList
