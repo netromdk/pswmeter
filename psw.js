@@ -39,9 +39,9 @@ Psw.prototype.analyze = function(text) {
   var score = this.calcScore(text);
   var meaning = this.scoreMeaning(score);
   return {
-    "score": score;
-    "meaning": meaning[0];
-    "color": meaning[1];
+    "score": score,
+    "meaning": meaning[0],
+    "color": meaning[1]
   };
 };
 Psw.prototype["analyze"] = Psw.prototype.analyze;

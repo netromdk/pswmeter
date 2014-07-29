@@ -27,11 +27,9 @@
   function recalc() {
     var pswField = $("#psw");
     var msgField = $("#msg");
-    var psw = new Psw;
-    var pswParsed = psw.analyze(pswField.val());
-
-    msgField.html("<b>" + pswParsed["meaning"] + "</b>");
-    pswField.css({"background-color" : pswParsed["color"]});
+    var data = (new Psw).analyze(pswField.val());
+    msgField.html("<b>" + data["meaning"] + "</b>");
+    pswField.css({"background-color" : data["color"]});
   }
 
   $("#psw").focus();
