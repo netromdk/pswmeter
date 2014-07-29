@@ -1,14 +1,11 @@
 /******************************************************************************
    Password strength analyzer
 
-   Use calcScore(text) to get a numeric score of how strong or
-   unguessable the password or passphrase is. A zero-length input will
-   yield a score of 0, which is the worst, and the higher the score
-   the stronger the password.
-
-   Meaning can be attached by using scoreMeaning(score) that will
-   output a textual meaning, like "dreadful" or "excellent", and a
-   color.
+   Use analyze(text) to analyze and get a score of how strong, or
+   unguessable, the password or passphrase is. A zero-length input
+   will yield a score of 0, which is the worst, and the higher the
+   score the stronger the password. In addition a word is also
+   attributed including a color.
 
    It uses two metrics to calculate a score: Basic16 and Comprehensive8
    The one producing the largest score is the result.
