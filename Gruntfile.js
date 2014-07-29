@@ -2,9 +2,12 @@ module.exports = function(grunt) {
   grunt.initConfig({
   	"pkg" : grunt.file.readJSON("package.json"),
 
-  	"uglify" : {
-  	  "my_target" : {
-  	  	"files" : {
+  	uglify : {
+  	  my_target : {
+  	  	options : {
+  	  	  banner : "// pswmeter @ https://github.com/netromdk/pswmeter (MIT License)\n"
+  	  	},
+  	  	files : {
   	  	  "psw.min.js" : "psw.js"
   	  	}
   	  }
@@ -13,5 +16,5 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks("grunt-contrib-uglify");
 
-  grunt.registerTasks("compile", ["uglify"]);
+  grunt.registerTask("compile", ["uglify"]);
 }
