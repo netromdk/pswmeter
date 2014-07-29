@@ -8,7 +8,7 @@ module.exports = function(grunt) {
   	  	  banner : "// pswmeter @ https://github.com/netromdk/pswmeter (MIT License)\n"
   	  	},
   	  	files : {
-  	  	  "psw.min.js" : "psw.js"
+                  "dist/psw.min.js" : "src/psw.js"
   	  	}
   	  }
   	}

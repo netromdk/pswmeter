@@ -1,5 +1,5 @@
 all:
-	 compile
+	grunt compile
 
 install:
 	sudo npm install
