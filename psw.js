@@ -60,25 +60,25 @@ Psw.prototype.scoreMeaning = function(score) {
     return ["Dreadful", "#FF0000"];
   }
   else if (score > 16 && score <= 33) {
-    return ["Bad", "#B22222"];
+    return ["Bad", "#FF6600"];
   }
   else if (score > 33 && score <= 50) {
-    return ["Poor", "#CD5C5C"];
+    return ["Poor", "#FF9900"];
   }
   else if (score > 50 && score <= 67) {
-    return ["Fair", "#FFFF00"];
+    return ["Fair", "#FFCC00"];
   }
   else if (score > 67 && score <= 84) {
-    return ["Good", "#98FB98"];
+    return ["Good", "#FFFF00"];
   }
   else if (score > 84 && score <= 99) {
-    return ["Great", "#ADFF2F"];
+    return ["Great", "#CCFF00"];
   }
   else if (score > 99 && score <= 115) {
-    return ["Excellent", "#00FF00"];
+    return ["Excellent", "#99FF00"];
   }
   else if (score > 115) {
-    return ["Fantastic", "#32CD32"];
+    return ["Fantastic", "#00FF00"];
   }
   else {
     return ["", ""];
