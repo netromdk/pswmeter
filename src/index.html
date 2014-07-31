@@ -24,12 +24,13 @@
 <script src="psw.js"></script>
 
 <script>
+  var psw = new Psw;
   function recalc() {
     var pswField = $("#psw");
     var msgField = $("#msg");
-    var data = (new Psw).analyze(pswField.val());
-    msgField.html("<b>" + data["meaning"] + "</b>");
-    pswField.css({"background-color" : data["color"]});
+    var data = psw.analyze(pswField.val());
+    msgField.html("<b>" + data.meaning + "</b>");
+    pswField.css({"background-color" : data.color});
   }
 
   $("#psw").focus();
