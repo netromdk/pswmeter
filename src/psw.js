@@ -34,16 +34,36 @@
 
 "use strict";
 
+/**
+ * Check for localStorage support using modenizr's approach:
+ * https://github.com/Modernizr/Modernizr/blob/master/feature-detects/storage/localstorage.js
+ */
+function hasLocalStorage() {
+  try {
+    var test = "123";
+    localStorage.setItem(test, test);
+    localStorage.removeItem(test);
+    return true;
+  }
+  catch(e) {
+    return false;
+  }
+}
+
+/**
+ * Psw class constructor.
+ */
 function Psw(path) {
   this.loadPath = path || "wordlist.json";
   this.wordlist = [];
 
   var self = this;
-  if (localStorage["psw_wordlist"] != null) {
+  var hasLS = hasLocalStorage();
+  if (hasLS && localStorage["psw_wordlist"] != null) {
     try {
       var tmp = JSON.parse(localStorage["psw_wordlist"]);
     }
-    catch (e) {
+    catch(e) {
       console.log("Error parsing localStorage value: " + e);
       return;
     }
@@ -59,13 +79,15 @@ function Psw(path) {
           try {
             data = JSON.parse(data);
           }
-          catch (e) {
+          catch(e) {
             console.log("Error parsing data read: " + e);
             return;
           }
         }
         self.wordlist = data.wordlist;
-        localStorage["psw_wordlist"] = JSON.stringify(data);
+        if (hasLS) {
+          localStorage["psw_wordlist"] = JSON.stringify(data);
+        }
         console.log("Loaded wordlist from \"" + self.loadPath + "\"");
       },
       "error": function(xhr, status, error) {
