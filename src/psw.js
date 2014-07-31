@@ -26,15 +26,23 @@
 
    Deps: jQuery, XRegExp
  ******************************************************************************/
+
 "use strict";
+
 function Psw(path) {
   this.loadPath = path || "wordlist.json";
   this.wordlist = [];
 
   var self = this;
   if (localStorage["psw_wordlist"] != null) {
-    var wordObject = JSON.parse(localStorage["psw_wordlist"]);
-    self.wordlist = wordObject.wordlist;
+    try {
+      var tmp = JSON.parse(localStorage["psw_wordlist"]);
+    }
+    catch (e) {
+      console.log("Error parsing localStorage value: " + e);
+      return;
+    }
+    self.wordlist = tmp.wordlist;
     console.log("Loaded wordlist from local storage!");
   }
   else {
@@ -42,16 +50,21 @@ function Psw(path) {
       "type": "GET",
       "url": self.loadPath,
       "success": function(data, status, xhr) {
-        console.log("Loaded wordlist from \"" + self.loadPath + "\"");
         if (typeof data === "string") {
-          data = JSON.parse(data);
+          try {
+            data = JSON.parse(data);
+          }
+          catch (e) {
+            console.log("Error parsing data read: " + e);
+            return;
+          }
         }
+        self.wordlist = data.wordlist;
         localStorage["psw_wordlist"] = JSON.stringify(data);
-        var wordObject = JSON.parse(localStorage["psw_wordlist"]);
-        self.wordlist = wordObject.wordlist;
+        console.log("Loaded wordlist from \"" + self.loadPath + "\"");
       },
       "error": function(xhr, status, error) {
-        console.log("Error" + error);
+        console.log("Error loading '" + self.loadPath + "': " + error);
       }
     });
   }
