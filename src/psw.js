@@ -1,4 +1,4 @@
-/******************************************************************************
+/*********************************************************************
    Password strength analyzer
 
    Use analyze(text) to analyze and get a score of how strong, or
@@ -7,8 +7,8 @@
    score the stronger the password. In addition a word is also
    attributed including a color.
 
-   It uses two metrics to calculate a score: Basic16 and Comprehensive8
-   The one producing the largest score is the result.
+   It uses two metrics to calculate a score: Basic16 and
+   Comprehensive8 The one producing the largest score is the result.
 
    Basic16 yields 4 points for each of the first 7 characters after
    which 8 points are awarded subsequent characters. A score of 100 is
@@ -21,11 +21,16 @@
    lowercse characters are found then 17 points are deducted, and if
    the text does not appear in the word list then 17 points are added.
 
+   Note that AJAX is used to fetch the JSON word list so a proper web
+   server must serve it in order for it to work. If parsed
+   successfully it will be saved using localStorage and loaded from
+   there at consecutive loads.
+
    The word lists used were provided by Open Wall:
      http://download.openwall.net/pub/wordlists/passwords/
 
    Deps: jQuery, XRegExp
- ******************************************************************************/
+ **********************************************************************/
 
 "use strict";
 
