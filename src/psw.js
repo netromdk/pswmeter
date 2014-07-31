@@ -43,6 +43,9 @@ function Psw(path) {
        "url" : self.loadPath,
        "success" : function(data, status, xhr) {
           console.log("Loaded wordlist from \"" + self.loadPath + "\"");
+          if (typeof data === "string") {
+            var data = JSON.parse(data);
+          }
           localStorage["wordlist"] = JSON.stringify(data);
           self.wordObject = JSON.parse(localStorage["wordlist"]);
           self.wordlist = self.wordObject.wordlist;
