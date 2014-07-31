@@ -30,31 +30,31 @@
 function Psw(path) {
   this.loadPath = path || "wordlist.json";
   this.wordlist = [];
-  this.wordObject = {};
-  var self = this;
 
+  var self = this;
   if (localStorage["wordlist"] != null) {
-     self.wordObject = JSON.parse(localStorage["wordlist"]);
-     self.wordlist = self.wordObject.wordlist;
-     console.log("Loaded wordlist from local storage!");
-  } else {
-     $.ajax({
-       "type" : "GET", 
-       "url" : self.loadPath,
-       "success" : function(data, status, xhr) {
-          console.log("Loaded wordlist from \"" + self.loadPath + "\"");
-          if (typeof data === "string") {
-            var data = JSON.parse(data);
-          }
-          localStorage["wordlist"] = JSON.stringify(data);
-          self.wordObject = JSON.parse(localStorage["wordlist"]);
-          self.wordlist = self.wordObject.wordlist;
-         }, 
-       "error" : function(xhr, status, error) {
-          console.log("Error" + error);
-       }
+    var wordObject = JSON.parse(localStorage["wordlist"]);
+    self.wordlist = wordObject.wordlist;
+    console.log("Loaded wordlist from local storage!");
+  }
+  else {
+    $.ajax({
+      "type": "GET",
+      "url": self.loadPath,
+      "success": function(data, status, xhr) {
+        console.log("Loaded wordlist from \"" + self.loadPath + "\"");
+        if (typeof data === "string") {
+          data = JSON.parse(data);
+        }
+        localStorage["wordlist"] = JSON.stringify(data);
+        var wordObject = JSON.parse(localStorage["wordlist"]);
+        self.wordlist = wordObject.wordlist;
+      },
+      "error": function(xhr, status, error) {
+        console.log("Error" + error);
+      }
     });
- }
+  }
 }
 window["Psw"] = Psw;
 
