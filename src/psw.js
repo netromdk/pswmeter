@@ -169,8 +169,6 @@ Psw.prototype["countCmp"] = Psw.prototype.countCmp;
  * Returns false if found in the word list.
  */
 Psw.prototype.checkWordList = function(text) {
-  return !(this.wordlist.indexOf(text) != -1 ||
-           this.wordlist.indexOf(text.toUpperCase()) != -1 ||
-           this.wordlist.indexOf(text.toLowerCase()) != -1);
+  return this.wordlist.indexOf(text.toLowerCase()) == -1;
 };
 Psw.prototype["checkWordList"] = Psw.prototype.checkWordList
