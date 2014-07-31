@@ -32,8 +32,8 @@ function Psw(path) {
   this.wordlist = [];
 
   var self = this;
-  if (localStorage["wordlist"] != null) {
-    var wordObject = JSON.parse(localStorage["wordlist"]);
+  if (localStorage["psw_wordlist"] != null) {
+    var wordObject = JSON.parse(localStorage["psw_wordlist"]);
     self.wordlist = wordObject.wordlist;
     console.log("Loaded wordlist from local storage!");
   }
@@ -46,8 +46,8 @@ function Psw(path) {
         if (typeof data === "string") {
           data = JSON.parse(data);
         }
-        localStorage["wordlist"] = JSON.stringify(data);
-        var wordObject = JSON.parse(localStorage["wordlist"]);
+        localStorage["psw_wordlist"] = JSON.stringify(data);
+        var wordObject = JSON.parse(localStorage["psw_wordlist"]);
         self.wordlist = wordObject.wordlist;
       },
       "error": function(xhr, status, error) {
