@@ -56,10 +56,20 @@ function hasLocalStorage() {
 function Psw(path) {
   this.loadPath = path || "wordlist.json";
   this.wordlist = [];
+  var wordlistExpired = function() {
+    var pswTimeStamp = localStorage["psw_timestamp"];
+    var now = Date.now();
+    var expiration = 1209600; // 2 weeks in seconds
+    if ((now - pswTimeStamp) >= expiration || !pswTimeStamp) {
+      return true;
+    }
+
+    return false;
+  }
 
   var self = this;
   var hasLS = hasLocalStorage();
-  if (hasLS && localStorage["psw_wordlist"] != null) {
+  if (hasLS && localStorage["psw_wordlist"] != null && !wordlistExpired()) {
     try {
       var tmp = JSON.parse(localStorage["psw_wordlist"]);
     }
@@ -87,6 +97,7 @@ function Psw(path) {
         self.wordlist = data.wordlist;
         if (hasLS) {
           localStorage["psw_wordlist"] = JSON.stringify(data);
+          localStorage["psw_timestamp"] = Date.now();
         }
         console.log("Loaded wordlist from \"" + self.loadPath + "\"");
       },
